@@ -20,7 +20,7 @@ from api.routers.v1.marketing_promotion import (
 )
 from api.routers.v1.receipt_ocr import ocr_router
 from api.routers.v1.whatsapp_data import whatsapp_data_router
-
+from api,routers.v1.brand import brand_router
 
 app = FastAPI()
 
@@ -54,6 +54,7 @@ app.include_router(vehicles_inspection_router.router)
 app.include_router(marketing_promotion_router.router)
 app.include_router(ocr_router.router)
 app.include_router(whatsapp_data_router.router)
+app.include_router(brand_router.router)
 
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="127.0.0.1", port=5000)
