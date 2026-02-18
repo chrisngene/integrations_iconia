@@ -20,7 +20,7 @@ from api.database import Base
 
 table_args = {"schema": "intergrations_iconia"}
 
-
+main_table_args = {"schema": "cb_jipange_data"}
 
 class User(Base):
     __table_args__ = table_args
@@ -237,3 +237,67 @@ class FormRowsLogs(Base):
     q_twentynine = Column(String)
     q_thirty = Column(String)
     nc_prev_child_form_id = Column(BigInteger)
+
+
+class ChoiceDetails(Base):
+    __table_args__ = main_table_args
+    __tablename__ = "echoice_details"
+
+    id = Column(BigInteger, primary_key=True, index=True)
+    choice_id = Column(BigInteger)
+    choice_item = Column(String)
+    choice_details_status = Column(String)
+    choice_item_no = Column(BigInteger)
+    orgstructure_id = Column(BigInteger)
+    post_date = Column(DateTime(timezone=True))
+    modified = Column(DateTime(timezone=True))
+    
+class FormRowsLogs(Base):
+    __table_args__ = main_table_args
+    __tablename__ = "eforms_row_logs"
+
+    id = Column(BigInteger, primary_key=True, index=True)
+    completed_source = Column(BigInteger)
+    instance_id = Column(BigInteger)
+    orgstructure_id = Column(BigInteger)
+    child_form_id = Column(BigInteger)
+    user_id = Column(BigInteger)
+    row_number = Column(BigInteger)
+    modified = Column(DateTime(timezone=True))
+    post_date = Column(DateTime(timezone=True))
+    row_archive = Column(BigInteger)
+    updated = Column(BigInteger)
+    kpi_count = Column(BigInteger)
+    kpi_breaches = Column(BigInteger)
+    q_one = Column(String)
+    q_two = Column(String)
+    q_three = Column(String)
+    q_four = Column(String)
+    q_five = Column(String)
+    q_six = Column(String)
+    q_seven = Column(String)
+    q_eight = Column(String)
+    q_nine = Column(String)
+    q_ten = Column(String)
+    q_eleven = Column(String)
+    q_twelve = Column(String)
+    q_thirteen = Column(String)
+    q_fourteen = Column(String)
+    q_fifteen = Column(String)
+    q_sixteen = Column(String)
+    q_seventeen = Column(String)
+    q_eighteen = Column(String)
+    q_nineteen = Column(String)
+    q_twenty = Column(String)
+    q_twentyone = Column(String)
+    q_twentytwo = Column(String)
+    q_twentythree = Column(String)
+    q_twentyfour = Column(String)
+    q_twentyfive = Column(String)
+    q_twentysix = Column(String)
+    q_twentyseven = Column(String)
+    q_twentyeight = Column(String)
+    q_twentynine = Column(String)
+    q_thirty = Column(String)
+    nc_prev_child_form_id = Column(BigInteger)
+    is_active = Column(Boolean, default=True)
