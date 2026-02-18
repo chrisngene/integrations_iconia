@@ -155,3 +155,9 @@ class ReceiptOCR(BaseModel):
     class Config:
         from_attributes = True
 
+class Brand(BaseModel):
+    item_description: Dict[str, str]
+    data: Dict[str, Any]
+
+    class Config:
+        from_attributes = True
