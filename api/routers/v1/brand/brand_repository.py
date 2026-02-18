@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from api import database, models, service
 import logging
 from api.routers.v1.authentication.auth_outh2 import get_current_user
-from api.routers.v1.vehicles_inspection.vehicles_inspection_model import (
+from api.routers.v1.brand.brand_model import (
     get_vehicles_data,
     push_maintenance_to_endpoint,
 )
@@ -17,7 +17,7 @@ logger.setLevel(level=logging.INFO)
 
 formatter = logging.Formatter("%(levelname)s:%(asctime)s:%(name)s:%(message)s")
 
-file_handler = logging.FileHandler(filename="logs/vehicles_inspection.log")
+file_handler = logging.FileHandler(filename="logs/brand.log")
 file_handler.setFormatter(fmt=formatter)
 
 logger.addHandler(hdlr=file_handler)
@@ -27,7 +27,7 @@ def get_all(current_user: service.User = Depends(get_current_user)):
     vehicles_data = get_vehicles_data()
 
     # Transform the data to match the LineClearance model
-    vehicles_inspection_data = [
+    brand_data = [
         {
             "item_description": item["item_description"],
             "data": item["data"],
@@ -35,7 +35,7 @@ def get_all(current_user: service.User = Depends(get_current_user)):
         for item in vehicles_data
     ]
 
-    return vehicles_inspection_data
+    return brand_data
 
 
 def create(instance_id: int, db: Session = Depends(database.get_db)):
