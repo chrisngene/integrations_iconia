@@ -13,16 +13,8 @@ router = APIRouter(prefix="/api/v1/brand", tags=["Brands"])
 )
 def get_all_brands(
     current_user: service.User = Depends(get_current_user),
-):
-    return vi.get_all(current_user)
-
-
-# Post vehicles recorded mileage to ERP
-@router.post(
-    "/create-inspection-log/{instance_id}", status_code=status.HTTP_201_CREATED
-)
-def create_brand(
-    instance_id: int,
     db: Session = Depends(database.get_db),
 ):
-    return vi.create(instance_id, db)
+    return vi.get_all(current_user, db)
+
+
