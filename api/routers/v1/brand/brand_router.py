@@ -5,7 +5,7 @@ from api import service, database
 from api.routers.v1.authentication.auth_outh2 import get_current_user
 from typing import List
 
-router = APIRouter(prefix="/api/v1/brand", tags=["Assets"])
+router = APIRouter(prefix="/api/v1/brand", tags=["Brands"])
 
 
 @router.get(
