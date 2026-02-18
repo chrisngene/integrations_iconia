@@ -14,11 +14,11 @@ from api.database import Base
 
 """
 
-    Models for the intergrations_osho database tables.
+    Models for the intergrations_iconia database tables.
 
 """
 
-table_args = {"schema": "intergrations_osho"}
+table_args = {"schema": "intergrations_iconia"}
 
 
 
