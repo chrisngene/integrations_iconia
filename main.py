@@ -20,7 +20,7 @@ from api.routers.v1.marketing_promotion import (
 )
 from api.routers.v1.receipt_ocr import ocr_router
 from api.routers.v1.whatsapp_data import whatsapp_data_router
-from api,routers.v1.brand import brand_router
+from api.routers.v1.brand import brand_router
 
 app = FastAPI()
 
