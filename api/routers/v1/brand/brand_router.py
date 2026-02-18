@@ -9,7 +9,7 @@ router = APIRouter(prefix="/api/v1/brand", tags=["Assets"])
 
 
 @router.get(
-    "/", status_code=status.HTTP_200_OK, response_model=List[service.VehiclesInspection]
+    "/", status_code=status.HTTP_200_OK, response_model=List[service.Brand]
 )
 def get_all_brands(
     current_user: service.User = Depends(get_current_user),
