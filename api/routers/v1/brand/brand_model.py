@@ -207,70 +207,18 @@ def generate_json_output(final_output_df: pd.DataFrame) -> List[Dict]:
 # print(generate_json_output)
 
 
-def get_vehicles_data() -> List[Dict]:
+def get_brand_data() -> List[Dict]:
     """
-    Main function to fetch, process, and return the latest
-    maintenance entry for each vehicle.
 
-    Returns:
-        List of dictionaries containing the latest vehicle data in the new format.
     """
-    session = requests.Session()
-    session.auth = HTTPBasicAuth(BC_USERNAME, BC_PASSWORD)
+    #  select the choice from the choice details table where choice_id = 258
+    db
 
-    dataframes = {}
-    df = fetch_odata_data(VEHICLES_INSPECTION_URL, session, VERIFY_SSL)
-    df2 = fetch_nextservice_data(NEXTSERVICE_URL, session, VERIFY_SSL)
-
-    # print(df2.head())
-    # to csv for debugging
-    # df2.to_csv("nextservice_data.csv", index=False)
-    
-    # print all columns of df
-    
-    # return df
-    # if df is not None:
-    #     dataframes = df
-    if df is None or df.empty:
-        logger.info("No data fetched. Returning an empty list.")
-        return []
-
-    # Process the DataFrame to get the latest entry for each serial number
-    # 1. Sort by 'Entry_No' in descending order
-    df_sorted = df.sort_values(by="Entry_No", ascending=False)
-    
-    # print(f"df_sorted shape: {df_sorted.shape}")
-
-    # 2. Drop duplicates based on 'serialNo', keeping the first occurrence
-    #    which is now the one with the highest 'Entry_No'
-    df_latest = df_sorted.drop_duplicates(subset=["serialNo"], keep="first")
-
-    # on df_latest i have a column called serialNo and i want to merge it with df2 on a column called
-    # Serial_No to get a column called Next_Service_Value. i then want to add this new column to df_latest with name Next_Service_Value
-    df_latest = df_latest.merge(
-        df2[["Serial_No", "Next_Service_Value"]],
-        left_on="serialNo",
-        right_on="Serial_No",
-        how="left",
-    ).drop(columns=["Serial_No"])
-
-    # print(f"df_latest data: {df_latest}")
-    # # print to csv for debugging
-    # df_latest.to_csv("vehicles_inspection_latest.csv", index=False)
-
-    # 3. filter to only show where column description has value "Update from telematics" or starts with "Service:"
-    # df_latest = df_latest[
-    #     (df_latest["description"] == "Update from Compliance Tool") |
-    #     (df_latest["description"].str.startswith("Service:"))
-    # ]
-
-    # print(df_latest)
-    # return df_latest.to_dict(orient='records')
 
     return generate_json_output(df_latest)
 
 
-# print(get_vehicles_data())
+# print(get_brand_data())
 
 # FastAPI endpoint would look like this:
 # from fastapi import FastAPI
